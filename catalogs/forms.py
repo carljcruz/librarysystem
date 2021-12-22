@@ -2,9 +2,9 @@ from django.db.models.base import Model
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 
-from catalogs.models import Book
+from catalogs.models import Book, Acquisition
 
-
+# lmao
 class BookForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BookForm, self).__init__(*args, **kwargs)
@@ -44,3 +44,9 @@ class BookForm(ModelForm):
     class Meta:
         model = Book
         fields = "__all__"
+
+
+class AcquisitionForm(ModelForm):
+    class Meta:
+        model = Acquisition
+        fields = '__all__'

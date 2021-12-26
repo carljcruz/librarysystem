@@ -1,4 +1,3 @@
-from typing import Type
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 import datetime
@@ -180,9 +179,63 @@ class Periodicals(models.Model):
         CHOICE_3 = "C3", _("Choice 3")
 
 
+    class TypeChoices(models.TextChoices):
+        CHOICE_1 = "C1", _("Choice 1")
+        CHOICE_2 = "C2", _("Choice 2")
+        CHOICE_3 = "C3", _("Choice 3")
+
+
+    class LanguageChoices(models.TextChoices):
+        CHOICE_1 = "C1", _("Choice 1")
+        CHOICE_2 = "C2", _("Choice 2")
+        CHOICE_3 = "C3", _("Choice 3")
+
+
+    class LocationChoices(models.TextChoices):
+        CHOICE_1 = "C1", _("Choice 1")
+        CHOICE_2 = "C2", _("Choice 2")
+        CHOICE_3 = "C3", _("Choice 3")
+
+
+    class SubjectsChoices(models.TextChoices):
+        CHOICE_1 = "C1", _("Choice 1")
+        CHOICE_2 = "C2", _("Choice 2")
+        CHOICE_3 = "C3", _("Choice 3")
+
+
     title = models.CharField(max_length=255)
     creator = models.CharField(max_length=255)
     volume = models.CharField(max_length=255)
     issue = models.CharField(max_length=255)
+    # TODO: convert this to date
+    date = models.CharField(max_length=25)
+    pages = models.CharField(max_length=25)
 
-    
+    type = models.CharField(
+        max_length=2, choices=TypeChoices.choices, default=TypeChoices.CHOICE_1
+    )
+
+    language = models.CharField(
+        max_length=2, choices=LanguageChoices.choices, default=LanguageChoices.CHOICE_1
+    )
+    location = models.CharField(
+        max_length=2, choices=LocationChoices.choices, default=LocationChoices.CHOICE_1
+    )
+    subjects = models.CharField(
+        max_length=2, choices=SubjectsChoices.choices, default=SubjectsChoices.CHOICE_1
+    )
+
+    # TODO: check this electronic access with the lib team
+    electronic_access = models.CharField(max_length=10)
+
+
+    def __str__(self):
+        return f'Periodical {self.title}'
+
+
+# electronics
+class Electronics(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'Electronics {self.title}'

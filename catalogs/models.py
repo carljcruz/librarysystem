@@ -170,3 +170,19 @@ class Acquisition(TimeStampedModel):
 
     def __str__(self):
         return f"Title:{self.title} Publisher: {self.publisher}"
+
+
+class Periodicals(models.Model):
+
+    class PeriodicalChoices(models.TextChoices):
+        CHOICE_1 = "C1", _("Choice 1")
+        CHOICE_2 = "C2", _("Choice 2")
+        CHOICE_3 = "C3", _("Choice 3")
+
+
+    title = models.CharField(max_length=255)
+    creator = models.CharField(max_length=255)
+    volume = models.CharField(max_length=255)
+    issue = models.CharField(max_length=255)
+
+    

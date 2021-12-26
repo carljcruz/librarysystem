@@ -15,3 +15,4 @@ class EmployeeForm(ModelForm):  # Employee form for registration
     class Meta:
         model = Employee
         fields = ('department',)
+
